@@ -1,3 +1,20 @@
 <h1>
-  {{title}}
+    Channel
 </h1>
+
+<button (click)="login()">Login</button>
+<button (click)="logout()">Logout</button>
+<ul>
+
+    <li class="text" *ngFor="let item of channels | async">
+        {{ item.to }} {{getStatus(item.to)}}
+    </li>
+</ul>
+
+
+<h1>
+    Messages
+</h1>
+
+
+<app-chatbox></app-chatbox>
