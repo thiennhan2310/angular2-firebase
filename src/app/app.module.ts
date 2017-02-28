@@ -19,7 +19,6 @@ export const firebaseConfig = {
     declarations: [
         AppComponent,
         ChatboxComponent
-
     ],
     imports: [
         BrowserModule,

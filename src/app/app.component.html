@@ -1,8 +1,10 @@
 <h1>
     Channel
 </h1>
+UserId : <input type="number" [(ngModel)]="userId">
 
-<button (click)="login()">Login</button>
+
+<button (click)="login(userId)">Login</button>
 <button (click)="logout()">Logout</button>
 <ul>
 
@@ -17,4 +19,4 @@
 </h1>
 
 
-<app-chatbox></app-chatbox>
+<app-chatbox [userId]="userId"></app-chatbox>

@@ -7,6 +7,7 @@ import {AngularFire, FirebaseListObservable} from "angularfire2";
     styleUrls: ['./chatbox.component.css']
 })
 export class ChatboxComponent implements OnInit {
+    @Input('userId') userId: string;
     private newMessage: string = '';
     private messageList: FirebaseListObservable<any[]>;
 
@@ -16,7 +17,6 @@ export class ChatboxComponent implements OnInit {
                 orderByChild: 'timestamp',
             }
         });
-
     }
 
     ngOnInit() {
@@ -25,7 +25,7 @@ export class ChatboxComponent implements OnInit {
     sendMessage(event: any) {
         if (event.keyCode == 13) {
             let mess = this.newMessage;
-            this.messageList.push({"from": "user2", "message": mess, "timestamp": Date.now()});
+            this.messageList.push({"from": "user" + this.userId, "message": mess, "timestamp": Date.now()});
             this.newMessage = '';
         }
     }
