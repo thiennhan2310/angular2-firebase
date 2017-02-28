@@ -6,6 +6,7 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {AngularFireModule} from "angularfire2";
 import {ChatboxComponent} from './chatbox/chatbox.component';
+import {PushNotificationsModule} from "angular2-notifications";
 // Must export the config
 export const firebaseConfig = {
     apiKey: "AIzaSyC_nKaX1SYoz12dBiCr4VaNVjuQB0Qjhfc",
@@ -24,7 +25,8 @@ export const firebaseConfig = {
         BrowserModule,
         FormsModule,
         HttpModule,
-        AngularFireModule.initializeApp(firebaseConfig)
+        AngularFireModule.initializeApp(firebaseConfig),
+        PushNotificationsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
