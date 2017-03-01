@@ -5,18 +5,23 @@ import {PushNotificationsService} from "angular2-notifications";
 @Component({
     selector: 'app-chatbox',
     templateUrl: './chatbox.component.html',
-    styleUrls: ['./chatbox.component.css']
+    styleUrls: ['./chatbox.component.css'],
 })
-export class ChatboxComponent implements OnInit, OnChanges {
+export class ChatboxComponent implements OnInit {
     @Input('userId') userId: string;
     private newMessage: string = '';
-    private messageList: FirebaseListObservable<any[]>;
+    private messageList: any[];
+    private firebaseListObservable: FirebaseListObservable<any[]>;
 
     constructor(private af: AngularFire, private _push: PushNotificationsService) {
-        this.messageList = this.af.database.list('/messages/channel1', {
+        this.firebaseListObservable = this.af.database.list('/messages/channel1', {
             query: {
                 orderByChild: 'timestamp',
             }
+        });
+
+        this.firebaseListObservable.subscribe(data => {
+            this.messageList = data;
         });
     }
 
@@ -26,15 +31,11 @@ export class ChatboxComponent implements OnInit, OnChanges {
     sendMessage(event: any) {
         if (event.keyCode == 13) {
             let mess = this.newMessage;
-            this.messageList.push({"from": "user" + this.userId, "message": mess, "timestamp": Date.now()});
+            this.firebaseListObservable.push({"from": "user" + this.userId, "message": mess, "timestamp": Date.now()});
+            // this.messageList.push({"from": "user" + this.userId, "message": mess, "timestamp": Date.now()});
             this.newMessage = '';
         }
     }
 
-    ngOnChanges() {
-        this._push.create('Test', {body: 'something'}).subscribe(
-            res => console.log(res),
-            err => console.log(err)
-        )
-    }
+
 }

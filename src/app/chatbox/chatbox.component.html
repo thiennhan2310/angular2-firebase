@@ -1,8 +1,7 @@
-<p>
+<div *ngIf="messageList">
+    <div>
     <input type="text" (keyup)="sendMessage($event)" [(ngModel)]="newMessage">
-</p>
-<ul>
-    <li class="text" *ngFor="let mess of messageList | async">
-        {{ mess | json }}
-    </li>
-</ul>
+    </div>
+
+    <app-messagelist [messageList]="messageList"></app-messagelist>
+</div>

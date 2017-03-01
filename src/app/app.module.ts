@@ -4,9 +4,10 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
-import {AngularFireModule} from "angularfire2";
+import {AngularFireModule, FirebaseListObservable} from "angularfire2";
 import {ChatboxComponent} from './chatbox/chatbox.component';
 import {PushNotificationsModule} from "angular2-notifications";
+import {MessagelistComponent} from './chatbox/messagelist/messagelist.component';
 // Must export the config
 export const firebaseConfig = {
     apiKey: "AIzaSyC_nKaX1SYoz12dBiCr4VaNVjuQB0Qjhfc",
@@ -19,7 +20,8 @@ export const firebaseConfig = {
 @NgModule({
     declarations: [
         AppComponent,
-        ChatboxComponent
+        ChatboxComponent,
+        MessagelistComponent
     ],
     imports: [
         BrowserModule,
