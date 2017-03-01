@@ -9,8 +9,7 @@
     "pree2e": "webdriver-manager update --standalone false --gecko false",
     "e2e": "protractor",
     "build": "ng build",
-    "local-start": "ng serve",
-    "start": "http-server ./ -p ${PORT:=5000} -c-1",
+    "start": "ng serve",
     "postinstall": "ng build --aot -prod"
   },
   "private": true,
