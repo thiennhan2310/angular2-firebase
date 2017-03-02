@@ -8,6 +8,7 @@ import {PushNotificationsService} from "angular2-notifications";
 })
 export class MessagelistComponent implements OnInit, OnChanges {
     @Input('messageList') messageList: any[];
+    @Input('userId') userId: string;
     // @Input('messageListLength') messageListLength : number; //to detect change
     constructor(private _push: PushNotificationsService) {
     }
@@ -16,11 +17,11 @@ export class MessagelistComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges() {
-        this.pushNoti();
+        //this.pushNotification();
     }
 
-    pushNoti() {
-        if (this.messageList != undefined) {
+    pushNotification() {
+        if (this.messageList.length > 0) {
             let lastMesage = this.messageList[this.messageList.length - 1]['message'] || '';
             this._push.create('Primus chat APP', {
                 icon: 'https://docs.nativescript.org/img/cli-getting-started/angular/chapter0/Angular_logo.png',

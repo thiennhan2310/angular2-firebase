@@ -1,5 +1,7 @@
 <ul>
     <li class="text" *ngFor="let mess of messageList">
-        {{ mess | json }}
+        <span *ngIf="mess.message">{{mess.from}} : {{ mess.message }}</span>
+        <span *ngIf="mess.isTyping && mess.from != ('user'+userId) "><img src="../../../assets/preloader.gif"
+                                                                          alt=""></span>
     </li>
 </ul>

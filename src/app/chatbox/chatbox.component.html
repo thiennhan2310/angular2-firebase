@@ -1,7 +1,7 @@
 <div *ngIf="messageList">
     <div>
-    <input type="text" (keyup)="sendMessage($event)" [(ngModel)]="newMessage">
+        <input type="text" (keyup)="sendMessage($event)" [(ngModel)]="newMessage">
     </div>
 
-    <app-messagelist [messageList]="messageList"></app-messagelist>
+    <app-messagelist [messageList]="messageList" [userId]="userId"></app-messagelist>
 </div>

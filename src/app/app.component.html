@@ -1,5 +1,5 @@
 <h1>
-    Channel
+    Channel of user {{userId || ''}}
 </h1>
 UserId : <input type="number" [(ngModel)]="userId">
 
@@ -9,7 +9,7 @@ UserId : <input type="number" [(ngModel)]="userId">
 <ul>
 
     <li class="text" *ngFor="let item of channels | async">
-        {{ item.to }} {{getStatus(item.to)}}
+        {{ item.to }} {{getStatus(item.to)}} -- {{item.isTyping}}
     </li>
 </ul>
 
