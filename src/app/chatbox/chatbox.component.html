@@ -1,6 +1,6 @@
 <div *ngIf="messageList">
     <div>
-        <input type="text" (keyup)="sendMessage($event)" [(ngModel)]="newMessage">
+        <input type="text" (keyup)="sendMessage($event)" [(ngModel)]="newMessage" (focus)="changeStatusMessageToRead()">
     </div>
 
     <app-messagelist [messageList]="messageList" [userId]="userId"></app-messagelist>

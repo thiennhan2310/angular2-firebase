@@ -11,6 +11,7 @@ export class AppComponent {
     title = 'Chat application!';
     channels: FirebaseListObservable<any[]>;
     status: FirebaseObjectObservable<any>;
+    channelId: string;
     userId: number;
 
     constructor(private af: AngularFire, private http: Http) {
@@ -26,20 +27,28 @@ export class AppComponent {
                 provider: AuthProviders.Custom,
                 method: AuthMethods.CustomToken
             });
-            this.channels = this.af.database.list('/channels/user' + userId);
+            this.channels = this.af.database.list('/channels/' + userId);
+            this.status = this.af.database.object('/users/' + this.userId);
+            this.status.update({'status': 'on'});
         });
     }
 
     logout() {
+        this.status = this.af.database.object('/users/' + this.userId);
+        this.status.update({'status': 'off'});
         this.af.auth.logout();
     }
 
     getStatus(userId: string) {
-        this.status = this.af.database.object('/user/' + userId);
+        this.status = this.af.database.object('/users/' + userId);
         let statusString = '';
         this.status.subscribe(data => {
             statusString = data.status;
         });
         return statusString;
+    }
+
+    setChannel(channelId: string) {
+        this.channelId = channelId;
     }
 }

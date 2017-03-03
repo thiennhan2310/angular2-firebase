@@ -8,8 +8,9 @@ UserId : <input type="number" [(ngModel)]="userId">
 <button (click)="logout()">Logout</button>
 <ul>
 
-    <li class="text" *ngFor="let item of channels | async">
-        {{ item.to }} {{getStatus(item.to)}} -- {{item.isTyping}}
+    <li class="text" *ngFor="let item of channels | async" (click)="setChannel(item.$key)">
+        {{ item.to }}
+        {{getStatus(item.to)}}
     </li>
 </ul>
 
@@ -19,4 +20,4 @@ UserId : <input type="number" [(ngModel)]="userId">
 </h1>
 
 
-<app-chatbox [userId]="userId"></app-chatbox>
+<app-chatbox [userId]="userId" [channelId]="channelId"></app-chatbox>
